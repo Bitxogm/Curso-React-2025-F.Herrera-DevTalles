@@ -1,0 +1,13 @@
+.sSection {
+  background-color: blanchedalmond;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 2rem;
+}
+
+.textItem {
+  width: 100px;
+}
+  

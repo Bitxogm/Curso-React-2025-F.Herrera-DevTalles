@@ -4,8 +4,10 @@ import type { Gif } from "../interfaces/gif.interface";
 import { giphyApy } from "../api/giphy.api";
 
 export const getGifsByQuery = async (query: string): Promise<Gif[]> => {
+  if (query.trim().length === 0) return [];
 
-  const response = await giphyApy<GiphyResponse>('/search', {
+  try {
+    const response = await giphyApy<GiphyResponse>('/search', {
     params: {
       q: query,
       limit:5,
@@ -18,7 +20,13 @@ export const getGifsByQuery = async (query: string): Promise<Gif[]> => {
     url: gif.images.original.url,
     width:  Number(gif.images.original.width),
     height: Number(gif.images.original.height),
-  }));
+  }));  
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+
+  
 };
      
 

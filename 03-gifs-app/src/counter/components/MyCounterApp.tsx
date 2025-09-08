@@ -1,4 +1,4 @@
-import useCounter from "../hooks/useCounterHook";
+import { useCounter } from "../hooks/useCounterHook";
 
 const MyCounterApp = () => {
   const {  counter, handleAdd, handleSubstract, handleReset } = useCounter(0);
@@ -19,12 +19,3 @@ const MyCounterApp = () => {
   );
 };
 export default MyCounterApp;
-
-
-
-
-
-
-
-
-

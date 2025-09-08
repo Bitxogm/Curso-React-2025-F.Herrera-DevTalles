@@ -7,7 +7,7 @@ const useGifs = () => {
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [previousTerms, setPreviousTerms] = useState<string[]>([]);
 
-  const gifsCache = useRef<Record<string, Gif[]>> ({})
+  const gifsCache = useRef<Record<string, Gif[]>> ({});
 
   const handleTermClicked = async (term: string) => {
     if(gifsCache.current[term]) {
@@ -16,7 +16,8 @@ const useGifs = () => {
     }
     const gifs = await getGifsByQuery(term);
     setGifs(gifs)
-  }
+    gifsCache.current[term] = gifs;
+  };
   
   const handleSearch = async (query: string = '') => {
     query = query.trim().toLowerCase();
@@ -33,7 +34,7 @@ const useGifs = () => {
         console.log('✅ Usando caché para:', query);
       setGifs(gifsCache.current[query]);
       return
-    }
+    };
 
     // Si no existe en el cache , hacemos la peticion
      console.log('❌ No está en caché, haciendo petición HTTP para:', query);
@@ -43,16 +44,16 @@ const useGifs = () => {
     // Grababmos en el gifsCache , los gifs que ya hemos pedido 
     gifsCache.current[query] = gifs;
     console.log('💾 Guardado en caché:', query);
-  }
+  };
 
   return {
     // Properties 
     gifs,
+    previousTerms,
     
     // Actions | Methods 
     handleSearch,
     handleTermClicked,
-    previousTerms,
   };
 }
 export default useGifs;

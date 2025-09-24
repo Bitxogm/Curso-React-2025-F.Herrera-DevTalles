@@ -5,9 +5,11 @@ import { createRoot } from 'react-dom/client';
 // import { TrafficLightWithEffect } from './02-useEffect/TrafficLightWithEffect';
 // import { TrafficLightCustomHook } from './02-useEffect/TrafficLightCustomHook';
 // import { PokemonPage } from './03-examples/PokemonPage';
-import './index.css';
-import FocusScreen from './04-useRef/FocusScreen';
+// import FocusScreen from './04-useRef/FocusScreen';
+// import { TasksApp } from './05-useReducer/TaskApp';
 
+import './index.css';
+import { ScrambleWords } from './05-useReducer/ScrambleWords';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,6 +18,8 @@ createRoot(document.getElementById('root')!).render(
     {/* <TrafficLightWithEffect/> */}
     {/* <TrafficLightCustomHook /> */}
     {/* <PokemonPage /> */}
-    <FocusScreen />
+    {/* <FocusScreen /> */}
+    {/* <TasksApp /> */}
+    <ScrambleWords />
   </StrictMode>
 );

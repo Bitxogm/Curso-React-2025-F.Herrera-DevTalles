@@ -1,44 +1,45 @@
 import { useEffect, useReducer, useState } from 'react';
+
 import { Plus, Trash2, Check } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getTasksInitialState, taskReducer } from './reducer/taskReducesr';
+
+import { getTasksInitialState, taskReducer } from './reducer/taskReducer';
 
 export const TasksApp = () => {
   const [inputValue, setInputValue] = useState('');
   // const [todos, setTodos] = useState<Todo[]>([]);
-
   const [state, dispatch] = useReducer(taskReducer, getTasksInitialState());
 
   useEffect(() => {
-    localStorage.setItem('tasks-state', JSON.stringify(state))
-  },[state]);
+    localStorage.setItem('tasks-state', JSON.stringify(state));
+  }, [state]);
 
   const addTodo = () => {
     if (inputValue.length === 0) return;
-    dispatch({ type: 'ADD_TODO', payload: inputValue })
+    dispatch({ type: 'ADD_TODO', payload: inputValue });
     setInputValue('');
   };
 
   const toggleTodo = (id: number) => {
-    dispatch({ type: 'TOGGLE_TODO', payload: id })
+    dispatch({ type: 'TOGGLE_TODO', payload: id });
   };
 
   const deleteTodo = (id: number) => {
-    dispatch({ type: 'DELETE_TODO', payload: id })
+    dispatch({ type: 'DELETE_TODO', payload: id });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    // console.log(`Presionaste la tecla ${e.key}`);
+    // console.log({ key: e.key });
     if (e.key === 'Enter') {
       addTodo();
     }
-
   };
 
-  const { todos, completed: completedCount, length: totalCount } = state
+  const { todos, completed: completedCount, length: totalCount } = state;
 
   // const completedCount = todos.filter((todo) => todo.completed).length;
   // const totalCount = todos.length;
@@ -121,10 +122,11 @@ export const TasksApp = () => {
                 {todos.map((todo) => (
                   <div
                     key={todo.id}
-                    className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 ${todo.completed
+                    className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-200 ${
+                      todo.completed
                         ? 'bg-slate-50 border-slate-200'
                         : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm'
-                      }`}
+                    }`}
                   >
                     <Checkbox
                       checked={todo.completed}
@@ -132,10 +134,11 @@ export const TasksApp = () => {
                       className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
                     />
                     <span
-                      className={`flex-1 transition-all duration-200 ${todo.completed
+                      className={`flex-1 transition-all duration-200 ${
+                        todo.completed
                           ? 'text-slate-500 line-through'
                           : 'text-slate-800'
-                        }`}
+                      }`}
                     >
                       {todo.text}
                     </span>

@@ -14,9 +14,10 @@ import { Toaster } from 'sonner';
 // import { MemoHook } from './06-memos/MemoHook';
 // import { MemoCounter } from './06-memos/MemoCounter';
 // import { InstagromApp } from './07-useOptimistic/InstagromApp';
+// import { ClientInformation } from './08-use-suspense/ClientInformation';
+import { ProfessionalApp } from './09-useContext/ProfessionalApp';
 
 import './index.css';
-import { ClientInformation } from './08-use-suspense/ClientInformation';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -31,13 +32,14 @@ createRoot(document.getElementById('root')!).render(
     {/* <MemoHook /> */}
     {/* < MemoCounter /> */}
     {/* < InstagromApp /> */}
-    <Suspense fallback={
+    {/* <Suspense fallback={
       <div className="bg-gradient  flex items-center justify-center h-screen">
         <p>Cargando...</p>
       </div>
     }>
       <ClientInformation />
-    </Suspense>
+    </Suspense> */}
+    <ProfessionalApp />
 
   </StrictMode>
 );

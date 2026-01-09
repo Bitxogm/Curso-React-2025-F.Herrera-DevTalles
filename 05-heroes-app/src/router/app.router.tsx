@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { lazy } from "react";
 
 import { AdminLayout } from "@/admin/layouts/AdminLayout";
@@ -21,13 +21,17 @@ export const appRouter: ReturnType<typeof createBrowserRouter> = createBrowserRo
         element: <HomePage />
       },
       {
-        path: 'heroes/1',
+        path: 'heroes/:idSlug',
         element: <HeroPage />
       },
       {
         path: 'search',
         element: <SearchPage />
       },
+      {
+        path: '*',
+        element: <Navigate to="/" />
+      }
 
     ],
   },

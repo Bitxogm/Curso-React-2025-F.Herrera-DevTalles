@@ -2,28 +2,38 @@ import { CustomJumbotron } from "@/components/ui/custom/CustomJumbotron";
 import { HeroStats } from "@/heroes/components/HeroStats";
 import { SearchControls } from "./ui/SearchControls";
 import { CustomBreadcrumbs } from "@/components/ui/custom/CustomBreadcrumbs";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router";
+import { searchHeroesAction } from "@/heroes/actions/search-heroes.action";
+import { HeroGrid } from "@/heroes/components/HeroGrid";
 
-export const SearchPage: React.FC= () => {
+export const SearchPage: React.FC = () => {
+
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get('name') ?? undefined;
+  const strength = searchParams.get('strength') ?? undefined;
+
+  const { data: heroes = [] } = useQuery({
+    queryKey: ['search', { name, strength }],
+    queryFn: () => searchHeroesAction({name, strength}),
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  })
   return (
     <>
-    <CustomJumbotron
-      title="Search Heroes"
-      description="Find your favorite superheroes and villains"
-    />
+      <CustomJumbotron
+        title="Search Heroes"
+        description="Find your favorite superheroes and villains"
+      />
 
-    <CustomBreadcrumbs currentPage="Search Heroes" 
-    // breadCrumbs={[
-    //   {label: 'Home', to: '/'},
-    //   {label: 'Home1', to: '/'},
-    //   {label: 'Home2', to: '/'}
-    // ]}
-    />  
+      <CustomBreadcrumbs currentPage="Search Heroes" />
 
-    {/* Stats Dashboard */}
-    <HeroStats />
-  
-    {/* Search Controls and filters */}
-    <SearchControls />
+      {/* Stats Dashboard */}
+      <HeroStats />
+
+      {/* Search Controls and filters */}
+      <SearchControls />
+
+      <HeroGrid heroes={heroes} />
     </>
 
   )

@@ -1,3 +1,4 @@
+import { use } from "react";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { CustomJumbotron } from "@/components/ui/custom/CustomJumbotron"
@@ -8,6 +9,7 @@ import { CustomBreadcrumbs } from "@/components/ui/custom/CustomBreadcrumbs";
 import { useHeroSummary } from "@/heroes/hooks/useHeroSummary";
 import { usePaginatedHero } from "@/heroes/hooks/usePaginatedHero";
 import { useHomePage } from "@/heroes/hooks/useHomePage";
+import { FavoriteHeroContext } from "@/heroes/context/FavoriteHeroContext";
 
 
 export const HomePage: React.FC = () => {
@@ -15,6 +17,8 @@ export const HomePage: React.FC = () => {
   const { selectedTab, page, limit, category, setSearchParams } = useHomePage();
   const { data: heroesResponse } = usePaginatedHero(+page, +limit, category);
   const { data: summary } = useHeroSummary();
+
+  const {favoriteCount, favorites} = use(FavoriteHeroContext)
 
   return (
     <>
@@ -48,7 +52,7 @@ export const HomePage: React.FC = () => {
                 return prev;
               })}
               className="flex items-center gap-2">
-              Favorites (3)
+              Favorites ({favoriteCount})
             </TabsTrigger>
 
             <TabsTrigger value="heroes" onClick={() => setSearchParams((prev) => {
@@ -74,7 +78,7 @@ export const HomePage: React.FC = () => {
           <TabsContent value="favorites" >
             {/* Show favorite heroes */}
             <h1> Favorites </h1>
-            <HeroGrid heroes={[]} />
+            <HeroGrid heroes={favorites} />
           </TabsContent>
 
           <TabsContent value="heroes" >
@@ -92,7 +96,12 @@ export const HomePage: React.FC = () => {
         </Tabs>
 
         {/* Pagination */}
-        <CustomPagination totalPages={heroesResponse?.pages ?? 0} />
+
+        {
+          selectedTab !== 'favorites' && (
+            <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
+          )
+        }
 
       </>
     </>

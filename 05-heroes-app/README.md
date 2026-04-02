@@ -1,18 +1,20 @@
-# Heroes APP
-1. Clone the repository
-   ```bash
-   git clone https://
+# 🦸 05 - Heroes App
 
-2. Editar .env file to set the API URL
-   ```env
-   VITE_API_URL=https://localhost:3000
-   ``
+Aplicación de SPA completa centrada en la navegación avanzada y la estructura de una aplicación robusta.
 
-3. Install dependencies
-   ```bash
-   npm install
-   ```  
-4. Run the application
-   ```bash
-   npm run dev
-   ```
+## 🚀 Temas Cubiertos
+
+- **React Router v6+**: Rutas anidadas, parámetros de URL y redirecciones.
+- **Rutas Protegidas**: Implementación de Private y Public Routes.
+- **Diseño & UI**: Integración de Tailwind CSS y componentes de Shadcn (Breadcrumbs, Jumbotron, Accordion).
+- **Context API Avanzado**: Manejo de favoritos y estados persistentes entre rutas.
+- **Animaciones**: Transiciones entre pantallas.
+- **Testing**: Pruebas unitarias de rutas y componentes de navegación.
+
+---
+
+## 🛠️ Cómo ejecutar
+1. Instalar dependencias: `npm install`
+2. Correr proyecto: `npm run dev`
+> [!NOTE]
+> Requiere el backend del módulo 06 para funcionar correctamente con datos reales.

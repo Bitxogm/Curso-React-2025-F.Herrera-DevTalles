@@ -1,7 +1,7 @@
 import { heroApi } from "../api/hero.api";
 import type { HeroesResponse, GetHeroesByPageParams } from "../types/get-heroes-response";
 
-const BASE_URL = import.meta.env.VITE_API_URL
+const BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 export const getHeroesByPageAction = async (
   page: number,

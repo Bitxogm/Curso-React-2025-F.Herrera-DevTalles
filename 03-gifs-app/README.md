@@ -1,69 +1,19 @@
-# React + TypeScript + Vite
+# 📷 03 - Gifs App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación práctica para buscar y mostrar GIFs utilizando la API de Giphy. Introducción al manejo real de datos.
 
-Currently, two official plugins are available:
+## 🚀 Temas Cubiertos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Fetch API & Axios**: Consumo de servicios externos (Giphy).
+- **Custom Hooks**: Abstracción de lógica de negocio (`useGifsHook`, `useCounterHook`).
+- **Manejo de Formularios**: Input controlado para búsquedas.
+- **Renderizado de Listas**: Optimización de componentes de visualización (`GifList`).
+- **Persistencia Local**: Uso de `localStorage` para el historial de búsqueda.
+- **Testing**: Pruebas de integración para componentes y Custom Hooks.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Cómo ejecutar
+1. Obtener API KEY de Giphy.
+2. Instalar dependencias: `npm install`
+3. Correr proyecto: `npm run dev`
